@@ -1,0 +1,70 @@
+<h1 class="mb-3">🔷 Azure DevOps</h1>
+<p class="lead">
+  Azure DevOps is a suite of services for planning, developing, and delivering software —
+  from backlog to production.
+</p>
+
+<h2 class="h4 mt-4">Core services</h2>
+<div class="row g-3">
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Boards</h5>
+        <p class="card-text">Track work with backlogs, sprints, and Kanban boards.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Repos</h5>
+        <p class="card-text">Git repositories with pull requests and branch policies.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Pipelines</h5>
+        <p class="card-text">CI/CD to build, test, and deploy across any platform.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Test Plans</h5>
+        <p class="card-text">Manual and exploratory testing tools.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Artifacts</h5>
+        <p class="card-text">Host and share NuGet, npm, and Maven packages.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="h4 mt-4">Sample YAML pipeline</h2>
+<p>A minimal pipeline that builds a Docker image and pushes it to a registry:</p>
+<pre class="bg-dark text-light p-3 rounded"><code>trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: Docker&#64;2
+    inputs:
+      containerRegistry: 'myRegistryConnection'
+      repository: 'myapp'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      tags: '$(Build.BuildId)'</code></pre>
+
+<div class="alert alert-info mt-4" role="alert">
+  Tip: Pair Azure DevOps Pipelines with Docker to build container images automatically on every commit.
+</div>

@@ -1,0 +1,81 @@
+<h1 class="mb-3">🐳 Docker</h1>
+<p class="lead">
+  Docker packages an application and its dependencies into a portable <em>container</em>
+  that runs the same way on any machine.
+</p>
+
+<h2 class="h4 mt-4">Key concepts</h2>
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Docker-image</h5>
+        <p class="card-text">A read-only template with your app and its dependencies. Built from a Dockerfile.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Container</h5>
+        <p class="card-text">A running instance of an image — isolated, lightweight, and disposable.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Registry</h5>
+        <p class="card-text">A store for images, such as Docker Hub or Azure Container Registry.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="h4 mt-4">Common commands</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr><th>Command</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>docker build -t myapp .</code></td><td>Build an image from the current directory.</td></tr>
+      <tr><td><code>docker run -p 8080:80 myapp</code></td><td>Run a container and map host port 8080 to container port 80.</td></tr>
+      <tr><td><code>docker images</code></td><td>List local images.</td></tr>
+      <tr><td><code>docker ps</code></td><td>List running containers.</td></tr>
+      <tr><td><code>docker stop &lt;id&gt;</code></td><td>Stop a running container.</td></tr>
+      <tr><td><code>docker push myapp</code></td><td>Push an image to a registry.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="h4 mt-4">Sample Dockerfile</h2>
+<pre class="bg-dark text-light p-3 rounded"><code>FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]</code></pre>
+
+<h2 class="h4 mt-4">How to create a Docker image</h2>
+<ol class="list-group list-group-numbered mb-3">
+  <li class="list-group-item">
+    <strong>Add a Dockerfile</strong> to the root of your project describing how to build and run the app (see the sample above).
+  </li>
+  <li class="list-group-item">
+    <strong>Create a <code>.dockerignore</code> file</strong> to exclude files like <code>node_modules</code> and build output from the image.
+  </li>
+  <li class="list-group-item">
+    <strong>Build the image</strong> with <code>docker build -t myapp:latest .</code> — the <code>-t</code> flag tags it and the <code>.</code> sets the build context.
+  </li>
+  <li class="list-group-item">
+    <strong>Verify it exists</strong> by running <code>docker images</code> and looking for <code>myapp</code> in the list.
+  </li>
+  <li class="list-group-item">
+    <strong>Run a container</strong> from the image with <code>docker run -p 3000:3000 myapp:latest</code> to test it locally.
+  </li>
+  <li class="list-group-item">
+    <strong>Push it to a registry</strong> with <code>docker push myapp:latest</code> so it can be pulled and deployed elsewhere.
+  </li>
+</ol>
