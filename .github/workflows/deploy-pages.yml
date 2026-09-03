@@ -41,8 +41,8 @@ jobs:
 
       - name: Prepare Pages artifact
         run: |
-          cp dist-pages/index.html dist-pages/404.html
-          touch dist-pages/.nojekyll
+          cp dist-pages/browser/index.html dist-pages/browser/404.html
+          touch dist-pages/browser/.nojekyll
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
