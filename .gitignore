@@ -1,0 +1,23 @@
+# .NET build artifacts
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+
+# Build results / logs
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio / Rider
+.vs/
+.idea/
+
+# Angular build output (published into the web project's wwwroot)
+DockerAndMore.Web/wwwroot/
+
+# OS files
+.DS_Store
+Thumbs.db
